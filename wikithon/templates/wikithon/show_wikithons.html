@@ -1,0 +1,29 @@
+{% extends 'wikithon/base.html' %}
+{% block title %} {{ Wikithons.name }} {% endblock %}
+
+{% block body %}
+        <div>
+            <h1>{{ Wikithons.name }}</h1> <h6>{{ Wikithons.date_time }}</h6><br>
+            <h5> {{ Wikithons.duration }}</h5><br>
+            <h4>  {{ Wikithons.description }}</h4><br>
+            <h4>  {{ Wikithons.description }}</h4><br>
+            <button class="w3-btn w3-section w3-right" >
+                <a href="{% url 'wikithon:list_attendees' %}" target="_blank" > المسجلين </a>
+            </button>
+        </div>
+        <div>
+            <button class="w3-btn w3-section w3-left" >
+                <a href="{% url 'wikithon:single_instructions' %}" target="_blank" > تعديل </a>
+            </button></br>
+            <button class="w3-btn w3-section w3-left" >
+                <a href="{% url 'wikithon:delete_wikithon' %}" target="_blank" > حذف </a>
+            </button>
+
+            <button class="w3-btn w3-section w3-right" >
+                <a href="{% url 'wikithon:single_instructions' %}" target="_blank" > التسجيل كفرد </a>
+            </button></br>
+            <button class="w3-btn w3-section w3-right" >
+                <a href="{% url 'wikithon:team_instructions' %}" target="_blank" > التسجيل كفريق </a>
+            </button>
+        </div>
+{% endblock %}

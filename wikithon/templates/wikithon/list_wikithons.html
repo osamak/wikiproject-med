@@ -1,0 +1,21 @@
+{% extends 'wikithon/base.html' %}
+{% block body %}
+
+</br></br></br></br>
+<h1>list wikithons template</h1>
+
+{% if Wikithons_set.all %}
+    <ul>
+    {% for wikithon in Wikithons_set.all %}
+    <li><a href="{% url 'wikithon:show_wikithons' Wikithons.pk %}"> {{ Wikithons.name }} </a> ({{ Wikithons.date_time }}) </li></br>
+    {% endfor %}
+    </ul>
+{% else %}
+<p> No wikithons are available yet. </p>
+{% endif %}
+
+<button class="w3-btn w3-section w3-right" >
+    <p><a href="{% url 'wikithon:add_wikithon' %}" target="_blank" id="h1"> إضافة ويكيثون جديد </a></p>
+</button>
+</br></br></br></br>
+{% endblock %}

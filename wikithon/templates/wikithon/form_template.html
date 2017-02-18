@@ -1,0 +1,11 @@
+{% extends 'wikithon/base.html' %}
+
+{% for field in form %}
+    <div>
+        <div>
+            <span>{{ field.errors }}</span>
+        </div>
+        <label>{{ field.label_tag }}</label>
+        <div>{{ field }}</div>
+    </div>
+{% endfor %}

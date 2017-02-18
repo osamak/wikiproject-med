@@ -1,0 +1,9 @@
+{% extends 'wikithon/base.html' %}
+{% block title %} {{ Category.name }} {% endblock %}
+
+{% block body %}
+        <div>
+            {{ Category.photo }}
+            <h1>{{ Category.name }}</h1><br>
+        </div>
+{% endblock %}
