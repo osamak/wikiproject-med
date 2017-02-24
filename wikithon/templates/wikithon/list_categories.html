@@ -5,55 +5,22 @@
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12 w3-right"> التصانيف </h3>
   </div>
 
-  <div class="w3-row-padding">
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topright w3-black w3-padding"> تصنيف </div>
-        <img src="add image" style="width:100%">
+<!--loop added-->
+{% if wikithons_set.all %}
+    <ul>
+    {% for category in categories_set.all %}
+      <div class="w3-row-padding">
+        <div class="w3-col l3 m6 w3-margin-bottom">
+          <div class="w3-display-container">
+            <li><a class="w3-display-topright w3-black w3-padding" href="{% url 'wikithon:list_categories' category_slug %}"> {{ category.name }} </a></li>
+            <img src="add image" style="width:100%">
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topright w3-black w3-padding"> تصنيف </div>
-        <img src="add image " style="width:100%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topright w3-black w3-padding"> تصنيف </div>
-        <img src="add image " style="width:100%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topright w3-black w3-padding"> تصنيف </div>
-        <img src="add image " style="width:100%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topright w3-black w3-padding"> تصنيف </div>
-        <img src="add image " style="width:100%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topright w3-black w3-padding"> تصنيف </div>
-        <img src="add image " style="width:100%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topright w3-black w3-padding"> تصنيف </div>
-        <img src="add image " style="width:100%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topright w3-black w3-padding"> تصنيف </div>
-        <img src="add image " style="width:100%">
-      </div>
-    </div>
-  </div>
+    {% endfor %}
+    </ul>
+{% else %}
+<p> No Categories are available yet. </p>
+{% endif %}
 
 {% endblock %}

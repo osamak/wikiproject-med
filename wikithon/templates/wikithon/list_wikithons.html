@@ -4,10 +4,10 @@
 </br></br></br></br>
 <h1>list wikithons template</h1>
 
-{% if Wikithons_set.all %}
+{% if wikithons_set.all %}
     <ul>
-    {% for wikithon in Wikithons_set.all %}
-    <li><a href="{% url 'wikithon:show_wikithons' Wikithons.pk %}"> {{ Wikithons.name }} </a> ({{ Wikithons.date_time }}) </li></br>
+    {% for wikithon in wikithons_set.all %}
+    <li><a href="{% url 'wikithon:show_wikithons' wikithons.pk %}"> {{ wikithons.name }} </a> ({{ wikithons.date_time }}) </li></br>
     {% endfor %}
     </ul>
 {% else %}
@@ -15,7 +15,7 @@
 {% endif %}
 
 <button class="w3-btn w3-section w3-right" >
-    <p><a href="{% url 'wikithon:add_wikithon' %}" target="_blank" id="h1"> إضافة ويكيثون جديد </a></p>
+    <a href="{% url 'wikithon:add_wikithon' %}" target="_blank" id="h1"> إضافة ويكيثون جديد </a>
 </button>
 </br></br></br></br>
 {% endblock %}

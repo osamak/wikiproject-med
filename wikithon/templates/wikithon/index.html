@@ -14,38 +14,30 @@
   </div>
 
   <div class="w3-row-padding">
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topright w3-black w3-padding"> تصنيف </div>
-        <img src="/w3images/house5.jpg" style="width:100%">
+<!--loop-->
+{% if wikithons_set.all %}
+    <ul>
+    {% for category in categories_set.all %}
+      <div class="w3-row-padding">
+        <div class="w3-col l3 m6 w3-margin-bottom">
+          <div class="w3-display-container">
+            <li><a class="w3-display-topright w3-black w3-padding" href="{% url 'wikithon:list_categories' category_slug %}"> {{ category.name }} </a></li>
+            <img src="add image" style="width:100%">
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topright w3-black w3-padding"> تصنيف </div>
-        <img src="/w3images/house2.jpg" style="width:100%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topright w3-black w3-padding"> تصنيف </div>
-        <img src="/w3images/house3.jpg" style="width:100%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topright w3-black w3-padding"> تصنيف </div>
-        <img src="add image url" style="width:100%">
-      </div>
-    </div>
+    {% endfor %}
+    </ul>
+{% else %}
+<p> Sorry, no categories are available yet. </p>
+{% endif %}
+<!--end loop-->
     <div>
       <button class="w3-btn w3-section w3-right" >
           <a href="{% url 'wikithon:list_categories' %}" target="_blank" id="h1"> كل التصانيف </a>
       </button>
     </div>
   </div>
-  </div>
-
  <!-- About Section -->
   <div class="w3-container w3-padding-32" id="about">
     <h3 class=" w3-right w3-border-bottom w3-border-light-grey w3-padding-12"> عنّا </h3><br/><br/><br/><br/>
@@ -88,7 +80,7 @@
   <!-- Contact Section -->
   <div class="w3-container w3-padding-32" id="contact">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12 w3-right"> اتصل بِنا </h3>
-    <!--<p>Lets get in touch and talk about your and our next project.</p>-->
+    <!-- <p>Lets get in touch and talk about your and our next project.</p> -->
     <form action="/action_page.php" target="_blank" >
       <input class="w3-input" type="text" placeholder="الإسم" required name="Name">
       <input class="w3-input w3-section" type="text" placeholder="البريد الإلكتروني" required name="Email">

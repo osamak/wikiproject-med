@@ -1,14 +1,11 @@
 from django.conf.urls import url
 from wikithon import views
+from django.views.generic import TemplateView
 
 app_name = 'wikithon'
 urlpatterns = [
-    url(r'^$', views.IndexView.as_view(), name='index'),
-    #/
-    url(r'^home/$', views.IndexView.as_view(), name='home'),
-    #/home/
-
-
+    url(r'^$', TemplateView.as_view(template_name='wikithon/index.html'), name='index'),
+    #
 
     url(r'^wikithons/$', views.ListWikithons.as_view(), name='list_wikithons'),
     #/wikithons/
@@ -18,16 +15,16 @@ urlpatterns = [
     #/wikithons/1/attendees
 
     url(r'^wikithon/add/$', views.AddWikithon.as_view(), name='add_wikithon'),
-    #/wikithon/add/
+    #/wikithons/add/
     url(r'^wikithon/(?P<wikithon_id>[0-9]+)/edit/$', views.EditWikithon.as_view(), name='edit_wikithon'),
-    #/wikithon/2/update/
+    #/wikithons/2/update/
     url(r'^wikithon/(?P<wikithon_id>[0-9]+)/delete/$', views.DeleteWikithon.as_view(), name='delete_wikithon'),
-    #/wikithon/2/delete
+    #/wikithons/2/delete
 
-    url(r'^wikithon/(?P<wikithon_id>[0-9]+)/singleinstructions/$', views.SingleInstructions.as_view(), name='single_instructions'),
+    url(r'^wikithon/(?P<wikithon_id>[0-9]+)/singleinstructions/$', TemplateView.as_view(template_name= 'wikithon/single_instructions.html'), name='single_instructions'),
     #/wikithons/1/singleinstructions/
 
-    url(r'^wikithon/(?P<wikithon_id>[0-9]+)/teaminstructions/$', views.TeamInstructions.as_view(), name='team_instructions'),
+    url(r'^wikithon/(?P<wikithon_id>[0-9]+)/teaminstructions/$', TemplateView.as_view(template_name= 'wikithon/team_instructions.html'), name='team_instructions'),
     #/wikithons/1/teaminstructions/
     url(r'^wikithon/(?P<wikithon_id>[0-9]+)/creatteam/$', views.CreateTeam.as_view(), name='create_team'),
     #/wikithons/1/creatteam/
@@ -40,11 +37,12 @@ urlpatterns = [
 
     url(r'^categories/$', views.ListCategories.as_view(), name='list_categories'),
     #/categories/
-    url(r'^categories/(?P<category_id>[0-9]+)/$', views.ShowCategory.as_view(), name='show_category'),
+    url(r'^categories/(?P<category_slug>[0-9]+)/$', views.ShowCategory.as_view(), name='show_category'),
     #/categories/1/
 
-    url(r'^reservationthanks/$', views.ReservationThanksView.as_view(), name='reservation_thanks'),
+    url(r'^reservationthanks/$', TemplateView.as_view(template_name= 'wikithon/reservation_thanks.html'), name='reservation_thanks'),
     #/reservation_thanks
-    url(r'^completionthanks/$', views.CompletionThanksView.as_view(), name='completion_thanks'),
+    url(r'^completionthanks/$', TemplateView.as_view(template_name= 'wikithon/completion_thanks.html'), name='completion_thanks'),
     #/completion_thanks
 ]
+

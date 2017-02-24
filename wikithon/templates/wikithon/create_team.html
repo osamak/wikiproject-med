@@ -2,7 +2,7 @@
 {% block body %}
 {% block title %} إنشاء فريق جديد {% endblock %}
 
-<form action="/action_page.php" target="_blank">
+<form method="post">
     {% csrf_token %}
     {% include 'wikithon/form_template.html' %}
      <button class="w3-btn w3-section w3-right" type="submit">

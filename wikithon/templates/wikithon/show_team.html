@@ -1,5 +1,5 @@
 {% extends 'wikithon/base.html' %}
-{% block title %} {{ Team.name }} {% endblock %}
+{% block title %} {{ Team.logo }} - {{ Team.name }} {% endblock %}
 
 {% block body %}
         <div>
@@ -7,7 +7,7 @@
             <h1>{{ Team.name }}</h1><br>
             <h3>{{ Team.description }}</h3><br>
             <h4>{{ Team.founder }}</h4><br>
-            <h5>{{ Team.members }}</h5><br>
+            <h5>{{ member.Team.members.all }}</h5><br>
             <h6>{{ Team.articles }}</h6><br>
             <button class="w3-btn w3-section w3-right" >
                 <a href="{% url 'wikithon:join_team' %}" target="_blank" > انضم لفريقنا </a>
