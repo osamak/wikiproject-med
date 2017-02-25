@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-
+from django.contrib.sites.models import Site
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -31,6 +31,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'post_office',
+    'userena',
+    'guardian',
+    'easy_thumbnails',
+    'accounts.apps.AccountsConfig',
     'wikithon.apps.WikithonConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -68,9 +73,28 @@ TEMPLATES = [
     },
 ]
 
+AUTH_PROFILE_MODULE = 'accounts.MyProfile'
+
+LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
+LOGIN_URL = '/accounts/signin/'
+LOGOUT_URL = '/accounts/signout/'
+
 WSGI_APPLICATION = 'wikiprojectmed.wsgi.application'
 
+AUTHENTICATION_BACKENDS = (
+    'userena.backends.UserenaAuthenticationBackend',
+    'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+ANONYMOUS_USER_ID = -1
 
+EMAIL_BACKEND = 'post_office.EmailBackend'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'wikimedproject@gmail.com'
+EMAIL_HOST_PASSWORD = 'Admin?WMP'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 

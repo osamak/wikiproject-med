@@ -13,23 +13,11 @@ class Wikithons(models.Model):
     def __unicode__(self):
         return self.name
 
-
-class Profile(models.Model):
-    wikithon = models.ForeignKey(Wikithons)
-    user = models.OneToOneField(User)
-    name = models.CharField(max_length=100)
-    twitter = models.CharField(max_length=50, null=True)
-    bio = models.TextField(null=True)
-    avatar = models.ImageField(null=True)
-    def __unicode__(self):
-        return self.name
-
-
 # gives me an error
 class Team(models.Model):
     name = models.CharField(max_length=100)
-    founder = models.ForeignKey(User)
-    #members = models.ManyToManyField(User)
+    members = models.ManyToMany(User, related_name="team_memberships")
+    founder = models.ForeignKey(User, related_name="teams_founded")
     logo = models.ImageField(null=True)
     articles = models.ManyToManyField('Article')
     description = models.TextField(max_length=1000)
@@ -46,7 +34,7 @@ class Category (models.Model):
 # gives me an error
 class Article (models.Model):
     en_name = models.CharField(max_length=100, null=True)
-    #ar_name = models.CharField(max_length=100)
+    ar_name = models.CharField(max_length=100)
     contributor = models.ForeignKey(User, null=True)
     category = models.ForeignKey(Category)
     quality = models.CharField(max_length=100)
