@@ -16,7 +16,7 @@ class Wikithons(models.Model):
 # gives me an error
 class Team(models.Model):
     name = models.CharField(max_length=100)
-    members = models.ManyToMany(User, related_name="team_memberships")
+    members = models.ManyToManyField(User, related_name="team_memberships")
     founder = models.ForeignKey(User, related_name="teams_founded")
     logo = models.ImageField(null=True)
     articles = models.ManyToManyField('Article')

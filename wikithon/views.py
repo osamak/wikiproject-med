@@ -1,5 +1,5 @@
 from django.views import generic
-from wikithon.models import Wikithons, Profile, Team, Category, Article
+from wikithon.models import Wikithons, Team, Category, Article
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 import string
