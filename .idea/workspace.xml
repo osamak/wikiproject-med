@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81424845-e5c8-4d7b-b6c3-c90b05b296dc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounts/models.py" afterPath="$PROJECT_DIR$/accounts/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wikiprojectmed/settings.py" afterPath="$PROJECT_DIR$/wikiprojectmed/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wikithon/admin.py" afterPath="$PROJECT_DIR$/wikithon/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wikithon/models.py" afterPath="$PROJECT_DIR$/wikithon/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wikithon/views.py" afterPath="$PROJECT_DIR$/wikithon/views.py" />
     </list>
     <ignored path="wikiproject-med.iws" />
@@ -51,9 +48,11 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wikithon/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.02328767">
-              <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
-              <folding />
+            <state vertical-scroll-proportion="0.7219178">
+              <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -765,9 +764,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wikithon/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02328767">
-          <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
-          <folding />
+        <state vertical-scroll-proportion="0.7219178">
+          <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

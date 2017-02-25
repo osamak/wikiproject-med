@@ -29,7 +29,7 @@ class ListAttendees(generic.ListView):
     template_name = 'wikithon/list_attendees.html'
     context_object_name = "attendees"
     def get_queryset(self):
-        return Profile.objects.all(), Team.objects.all()
+        return  Team.objects.all()
 
 class AddWikithon(CreateView):
     model = Wikithons
