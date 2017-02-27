@@ -20,5 +20,4 @@ from wikithon import urls as wikithon_urls
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include(wikithon_urls)),
-    url(r'^accounts/', include('userena.urls')),
 ]

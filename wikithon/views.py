@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse_lazy
 import string
 import random
 
+
 class IndexView(generic.TemplateView):
     template_name = 'wikithon/index.html'
     context_object_name = 'all_categories'
@@ -17,6 +18,7 @@ class ListWikithons(generic.ListView):
     context_object_name = "wikithon"
     def get_queryset(self):
         return Wikithons.objects.all()
+
 
 class ShowWikithon(generic.DetailView):
     model = Wikithons
@@ -90,6 +92,7 @@ class ListCategories(generic.ListView):
     context_object_name = "categories"
     def get_queryset(self):
         return Category.objects.all()
+
 class ShowCategory(generic.DetailView):
     model = Article
     template_name = 'wikithon/show_category.html'

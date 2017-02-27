@@ -1,0 +1,72 @@
+<!--need to add staticfiles-->
+{% extends 'accounts/base.html' %}{% load staticfiles %}
+{% block title %} تحديث المعلومات {% endblock %}
+{% block description %}فضلًا استخدم النموذج التالي لتحديث بياناتك {% endblock %}
+{% block content %}
+
+{% if messages %}
+<div class="alert alert-success">
+    {% for message in messages %}
+    <p {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }} </p>
+	<p {% if message.tags %} class="{{ message.tags }}"{% endif %}> <a href={%url'wikithon:index'%}> يمكنك العودة للصفحة الرئيسية </a></p>
+    {% endfor %}
+</div>
+{% endif %}
+<form method="post" role="form" id="form_register">
+    {% csrf_token %}
+    <div class="dinar-light">
+        <div class="form-group">
+            <label class="control-label">الاسم </label>
+            <div class="input-group{% if form.name.errors %} validate-has-error{% endif %}">
+			    <div class="input-group-addon">
+				    <i class="entypo-user"></i>
+			    </div>
+				<input {% if form.name.value and not form.name.errors %}value="{{ form.name.value }}" {% endif %}type="text" class="form-control" name="name" id="name" placeholder="{{ form.name.label }}" required="required"/>
+				{% if form.name.errors %}
+				    {% for error in form.name.errors %}
+				         <label class='error' for='name'>{{ error|escape }}</label>
+				    {% endfor %}
+				{% endif %}
+            </div>
+	    </div>
+    </div>
+    <div class="dinar-light">
+	    <div class="form-group">
+            <label class="control-label">الاسم </label>
+			<div class="input-group{% if form.twitter.errors %} validate-has-error{% endif %}">
+			    <div class="input-group-addon">
+				    <i class="entypo-user"></i>
+			    </div>
+			    <input {% if form.twitter.value and not form.twitter.errors %}value="{{ form.twitter.value }}" {% endif %}type="text" class="form-control" name="twitter" id="twitter" placeholder="{{ form.twitter.label }}" required="required"/>
+				    {% if form.twitter.errors %}
+					    {% for error in form.twitter.errors %}
+					        <label class='error' for='twitter'>{{ error|escape }}</label>
+					    {% endfor %}
+					{% endif %}
+			</div>
+		</div>
+	</div>
+    <div class="dinar-light">
+		<div class="form-group">
+            <label class="control-label">الاسم </label>
+			<div class="input-group{% if form.bio.errors %} validate-has-error{% endif %}">
+			    <div class="input-group-addon">
+			        <i class="entypo-user"></i>
+			    </div>
+				<input {% if form.bio.value and not form.bio.errors %}value="{{ form.bio.value }}" {% endif %}type="text" class="form-control" name="bio" id="bio" placeholder="{{ form.bio.label }}" required="required"/>
+				    {% if form.twitter.errors %}
+					    {% for error in form.twitter.errors %}
+					        <label class='error' for='twitter' >{{ error|escape }}</label>
+					    {% endfor %}
+					{% endif %}
+			</div>
+		</div>
+	</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-success btn-block btn-login">
+					<i class="entypo-left-open-mini"></i>
+					سجّل
+				</button>
+			</div>
+</form>
+{% endblock %}
