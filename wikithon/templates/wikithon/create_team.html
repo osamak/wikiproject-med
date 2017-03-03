@@ -1,12 +1,15 @@
-{% extends 'wikithon/base.html' %}
-{% block body %}
+{% extends 'wikithon/base.html' %}{% load staticfiles %}
 {% block title %} إنشاء فريق جديد {% endblock %}
-
+{% block body %}
+</br></br></br></br>
 <form method="post">
+    <h2> فريق جديد </h2>
     {% csrf_token %}
     {% include 'wikithon/form_template.html' %}
-     <button class="w3-btn w3-section w3-right" type="submit">
-        <i class="fa fa-paper-plane"></i> أرسِل
+     <button class="btn btn-success" type="submit">
+        <i>{% bootstrap_icon "ok-sign" %} أرسِل</i>
      </button>
+</br></br></br></br>
 </form>
+
 {% endblock %}

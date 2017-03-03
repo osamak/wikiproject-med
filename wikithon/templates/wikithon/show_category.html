@@ -1,7 +1,7 @@
-{% extends 'wikithon/base.html' %}
-{% block title %} {{ Category.name }} {% endblock %}
-
-{% block body %}
+{% extends 'wikithon/show_base.html' %}{% load staticfiles %}
+{% block title %}{{ Category.name }}{% endblock %}
+{% block meta %}{% endblock %}
+{% block content %}
 
         <div>
             {{ Category.photo }}
@@ -12,115 +12,115 @@
 {% if articles_set.all %}
     <ul>
     {% for article in articles_set.all %}
-<div class="panel panel-default" style="background-color:#ccffcc;">
-    <div class="panel-heading" >
-        <h3 class="panel-title" ><a data-toggle="collapse" data-parent="#accordion" href="#collapse1"> {{ article.status }}</a></h3>
-    </div>
-    <div id="collapse1" class="panel-collapse collapse">
-        <div class="panel-body">
-        {% if article.status is 'AVAILABLE' %}
-        <table style="width:100%">
-            {% for article in articles %}
-              <tr>
-                <td><a href={{article.en_name}}> {{ article.en_name }} </a></td>
-                <td>{{ article.quality }}</td>
-                <td>{{ article.importance }}</td>
-                <td>{{ article.words }}</td>
-              </tr>
-            % endfor %}
-        </table>
-        {% endif %}
+        <div class="panel panel-default" style="background-color:#ccffcc;">
+            <div class="panel-heading" >
+                <h3 class="panel-title" ><a data-toggle="collapse" data-parent="#accordion" href="#collapse1"> {{ article.status }}</a></h3>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse">
+                <div class="panel-body">
+                {% if article.status is 'AVL' %}
+                <table style="width:100%">
+                    {% for article in articles %}
+                      <tr>
+                        <td><a href={{article.en_name}}> {{ article.en_name }} </a></td>
+                        <td>{{ article.quality }}</td>
+                        <td>{{ article.importance }}</td>
+                        <td>{{ article.words }}</td>
+                      </tr>
+                    % endfor %}
+                </table>
+                {% endif %}
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<div class="panel panel-default" style="background-color:#FFFFE0;">
-    <div class="panel-heading">
-        <h3 class="panel-title" ><a data-toggle="collapse" data-parent="#accordion" href="#collapse2"> {{ article.status }}</a></h3>
-    </div>
-    <div id="collapse2" class="panel-collapse collapse">
-        <div class="panel-body">
-        {% elif article.status is 'RESERVED' %}
-        <table style="width:100%">
-            {% for article in articles %}
-              <tr>
-                <td><a href={{article.en_name}}> {{ article.en_name }} </a></td>
-                <td>{{ article.quality }}</td>
-                <td>{{ article.importance }}</td>
-                <td>{{ article.words }}</td>
-                <td>{{ article.contributor }}</td>
-              </tr>
-            % endfor %}
-        </table>
-        {% endif %}
+        <div class="panel panel-default" style="background-color:#FFFFE0;">
+            <div class="panel-heading">
+                <h3 class="panel-title" ><a data-toggle="collapse" data-parent="#accordion" href="#collapse2"> {{ article.status }}</a></h3>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse">
+                <div class="panel-body">
+                {% elif article.status is 'RES' %}
+                <table style="width:100%">
+                    {% for article in articles %}
+                      <tr>
+                        <td><a href={{article.en_name}}> {{ article.en_name }} </a></td>
+                        <td>{{ article.quality }}</td>
+                        <td>{{ article.importance }}</td>
+                        <td>{{ article.words }}</td>
+                        <td>{{ article.contributor }}</td>
+                      </tr>
+                    % endfor %}
+                </table>
+                {% endif %}
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<div class="panel panel-default" style="background-color:#e6e6e6;">
-    <div class="panel-heading" >
-        <h3 class="panel-title" ><a data-toggle="collapse" data-parent="#accordion" href="#collapse3"> {{ article.status }}</a></h3>
-    </div>
-    <div id="collapse3" class="panel-collapse collapse">
-        <div class="panel-body">
-        {% elif article.status is 'SUBMITTED' %}
-        <table style="width:100%">
-            {% for article in articles %}
-              <tr>
-                <td><a href={{article.en_name}}> {{ article.en_name }} </a></td>
-                <td>{{ article.quality }}</td>
-                <td>{{ article.importance }}</td>
-                <td>{{ article.words }}</td>
-                <td>{{ article.contributor }}</td>
-              </tr>
-            % endfor %}
-        </table>
-        {% endif %}
+        <div class="panel panel-default" style="background-color:#e6e6e6;">
+            <div class="panel-heading" >
+                <h3 class="panel-title" ><a data-toggle="collapse" data-parent="#accordion" href="#collapse3"> {{ article.status }}</a></h3>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse">
+                <div class="panel-body">
+                {% elif article.status is 'SUB' %}
+                <table style="width:100%">
+                    {% for article in articles %}
+                      <tr>
+                        <td><a href={{article.en_name}}> {{ article.en_name }} </a></td>
+                        <td>{{ article.quality }}</td>
+                        <td>{{ article.importance }}</td>
+                        <td>{{ article.words }}</td>
+                        <td>{{ article.contributor }}</td>
+                      </tr>
+                    % endfor %}
+                </table>
+                {% endif %}
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<div class="panel panel-default" style="background-color:#b3d9ff;">
-    <div class="panel-heading">
-        <h3 class="panel-title" ><a data-toggle="collapse" data-parent="#accordion" href="#collapse4"> {{ article.status }}</a></h3>
-    </div>
-    <div id="collapse4" class="panel-collapse collapse" >
-        <div class="panel-body" >
-        {% elif article.status is 'PUBLISHED' %}
-        <table style="width:100%">
-            {% for article in articles %}
-              <tr>
-                <td><a href={{article.en_name}}> {{ article.en_name }} </a></td>
-                <td>{{ article.quality }}</td>
-                <td>{{ article.importance }}</td>
-                <td>{{ article.words }}</td>
-                <td>{{ article.contributor }}</td>
-              </tr>
-            % endfor %}
-        </table>
-        {% endif %}
+        <div class="panel panel-default" style="background-color:#b3d9ff;">
+            <div class="panel-heading">
+                <h3 class="panel-title" ><a data-toggle="collapse" data-parent="#accordion" href="#collapse4"> {{ article.status }}</a></h3>
+            </div>
+            <div id="collapse4" class="panel-collapse collapse" >
+                <div class="panel-body" >
+                {% elif article.status is 'PUB' %}
+                <table style="width:100%">
+                    {% for article in articles %}
+                      <tr>
+                        <td><a href={{article.en_name}}> {{ article.en_name }} </a></td>
+                        <td>{{ article.quality }}</td>
+                        <td>{{ article.importance }}</td>
+                        <td>{{ article.words }}</td>
+                        <td>{{ article.contributor }}</td>
+                      </tr>
+                    % endfor %}
+                </table>
+                {% endif %}
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<div class="panel panel-default" style="background-color:#ff8080;">
-    <div class="panel-heading" >
-        <h3 class="panel-title" ><a data-toggle="collapse" data-parent="#accordion" href="#collapse5"> {{ article.status }}</a></h3>
-    </div>
-    <div id="collapse5" class="panel-collapse collapse" >
-        <div class="panel-body" >
-        {% else article.status is 'REJECTED' %}
-        <table style="width:100%">
-            {% for article in articles %}
-              <tr>
-                <td><a href={{article.en_name}}> {{ article.en_name }} </a></td>
-                <td>{{ article.quality }}</td>
-                <td>{{ article.importance }}</td>
-                <td>{{ article.words }}</td>
-                <td>{{ article.contributor }}</td>
-              </tr>
-            % endfor %}
-        </table>
-        {% endif %}
+        <div class="panel panel-default" style="background-color:#ff8080;">
+            <div class="panel-heading" >
+                <h3 class="panel-title" ><a data-toggle="collapse" data-parent="#accordion" href="#collapse5"> {{ article.status }}</a></h3>
+            </div>
+            <div id="collapse5" class="panel-collapse collapse" >
+                <div class="panel-body" >
+                {% else article.status is 'REJ' %}
+                <table style="width:100%">
+                    {% for article in articles %}
+                      <tr>
+                        <td><a href={{article.en_name}}> {{ article.en_name }} </a></td>
+                        <td>{{ article.quality }}</td>
+                        <td>{{ article.importance }}</td>
+                        <td>{{ article.words }}</td>
+                        <td>{{ article.contributor }}</td>
+                      </tr>
+                    % endfor %}
+                </table>
+                {% endif %}
+                </div>
+            </div>
         </div>
-    </div>
-</div>
     {% endfor %}
     </ul>
 {% else %}

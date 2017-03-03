@@ -1,16 +1,26 @@
+{% extends 'wikithon/show_base.html' %}{% load staticfiles %}
+{% block title %}{{ Team.name }}{% endblock %}
+{% block content %}
+
+{% endblock %}
+
 {% extends 'wikithon/base.html' %}
 {% block title %} {{ Team.logo }} - {{ Team.name }} {% endblock %}
 
 {% block body %}
         <div>
-            {{ Team.logo }}
-            <h1>{{ Team.name }}</h1><br>
-            <h3>{{ Team.description }}</h3><br>
-            <h4>{{ Team.founder }}</h4><br>
-            <h5>{{ member.Team.members.all }}</h5><br>
-            <h6>{{ Team.articles }}</h6><br>
-            <button class="w3-btn w3-section w3-right" >
-                <a href="{% url 'wikithon:join_team' %}" target="_blank" > انضم لفريقنا </a>
-            </button>
+          <img src="{{ Team.logo }}" style="width: 140px; height: 140px;">
+            <p><strong> {{ Team.name }} </strong>
+            <blockquote>
+            <ol>
+            <li> {{ Team.description }} </li>
+            <li>{{ Team.founder }}</li>
+            <li> {{ member.Team.members.all }} </li>
+            <li> {{ Team.articles }} </li>
+            </ol>
+            </blockquote>
+            <button class="btn btn-success">
+				 {% bootstrap_icon "ok-sign" %}<a href="{% url 'wikithon:join_team' %}" target="_blank" > انضم لفريقنا </a>
+			</button>
         </div>
 {% endblock %}

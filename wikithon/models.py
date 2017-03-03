@@ -43,8 +43,8 @@ class Article (models.Model):
     words = models.IntegerField(null=True)
     #is_available = models.BooleanField( default=True)
     url = models.URLField()
-    status_choices = (('AVAILABLE','Available'),('RESERVED','Reserved'), ('SUBMITTED','Submitted'), ('PUBLISHED','Published'), ('REJECTED','Rejected'))
-    status = models.CharField(max_length=100,choices=status_choices)
+    status_choices = (('AVL','Available'),('RES','Reserved'), ('SUB','Submitted'), ('PUB','Published'), ('REJ','Rejected'))
+    status = models.CharField(max_length=3,choices=status_choices, default='AVL')
 
 # change model name to "Reservation"
 class Submission (models.Model):

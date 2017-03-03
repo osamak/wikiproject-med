@@ -1,8 +1,15 @@
-{% extends 'wikithon/base.html' %}
+{% extends "base.html" %}
+{% block title %}تعليمات{% endblock %}
+{% block content %}
 
-{% block body %}
-<p> تعليمات </p>
-<button class="w3-btn w3-section w3-right" >
+<p><strong> الفرق </strong>
+<blockquote>
+<ol>
+<li> نص التعليمات </li>
+</ol>
+</blockquote>
+
+    <button>
     <a href="{% url 'wikithon:create_team' %}" target="_blank" > التالي </a>
-</button>
+    </button>
 {% endblock %}

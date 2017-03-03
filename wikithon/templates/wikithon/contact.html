@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block title %}اتصل بنا{% endblock %}
+{% block content %}
+    <p></p>
+	<form action="{% url 'wikithon:contact' %}" method="post" class="form">
+		{% csrf_token %}
+		{% bootstrap_form form %}
+		{% buttons %}
+			<button type="submit" class="btn btn-success">
+				 {% bootstrap_icon "ok-sign" %} أرسل
+			</button>
+		{% endbuttons %}
+	</form>
+{% endblock %}
+
+

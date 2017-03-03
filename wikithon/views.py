@@ -12,6 +12,12 @@ class IndexView(generic.TemplateView):
     def get_queryset(self):
         return Category.objects.all()
 
+class ContactView(generic.TemplateView):
+    template_name = 'wikithon/contact.html'
+class AboutView(generic.TemplateView):
+    template_name = 'wikithon/about.html'
+class SponsorView(generic.TemplateView):
+    template_name = 'wikithon/sponsor.html'
 
 class ListWikithons(generic.ListView):
     template_name = 'wikithon/list_wikithons.html'
@@ -31,7 +37,7 @@ class ListAttendees(generic.ListView):
     template_name = 'wikithon/list_attendees.html'
     context_object_name = "attendees"
     def get_queryset(self):
-        return  Team.objects.all()
+        return Team.objects.all()
 
 class AddWikithon(CreateView):
     model = Wikithons

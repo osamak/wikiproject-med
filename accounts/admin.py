@@ -7,7 +7,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from userena.admin import UserenaAdmin
 from accounts.models import Profile
 
-
+#work on it
+#https://docs.djangoproject.com/en/1.10/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display
+#do it again
 class UserListAuthenticationForm(AdminAuthenticationForm):
     def confirm_login_allowed(self, user):
         if not user.is_active:
@@ -19,7 +21,6 @@ class UserListAuthenticationForm(AdminAuthenticationForm):
 
 class UserListAdmin(admin.sites.AdminSite):
     login_form = UserListAuthenticationForm
-
     def has_permission(self, request):
         return request.user.is_superuser
 
@@ -66,7 +67,7 @@ class ModifiedUserAdmin(UserenaAdmin):
     list_filter = (CoordinatorFilter, ReviewerFilter)
     actions = [make_active]
     search_fields= ('name', 'email')
-    inlines = [ProfileInline,]
+    inlines = [ProfileInline]
 
     def has_module_permission(self, request, obj=None):
         return request.user.is_superuser
@@ -112,7 +113,7 @@ class ModifiedUserAdmin(UserenaAdmin):
 
     name.short_description = u"الاسم"
 
-user_list_admin = UserListAdmin("User List Admin")
-admin.site.unregister(User)
-admin.site.register(User, ModifiedUserAdmin)
-user_list_admin.register(User, ModifiedUserAdmin)
+#user_list_admin = UserListAdmin("User List Admin")
+#admin.site.unregister(User)
+#admin.site.register(User, ModifiedUserAdmin)
+#user_list_admin.register(User, ModifiedUserAdmin)

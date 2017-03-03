@@ -1,11 +1,19 @@
 from django.conf.urls import url
 from wikithon import views
 from django.views.generic import TemplateView
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'wikithon'
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='wikithon/index.html'), name='index'),
     #
+    url(r'^contact/$', TemplateView.as_view(template_name= 'wikithon/contact.html'), name='contact'),
+    #/contact/
+    url(r'^about/$', TemplateView.as_view(template_name= 'wikithon/about.html'), name='about'),
+    #/about/
+    url(r'^sponsor/$', TemplateView.as_view(template_name= 'wikithon/sponsor.html'), name='sponsor'),
+    #/sponsor/
 
     url(r'^wikithons/$', views.ListWikithons.as_view(), name='list_wikithons'),
     #/wikithons/
@@ -45,4 +53,4 @@ urlpatterns = [
     url(r'^completionthanks/$', TemplateView.as_view(template_name= 'wikithon/completion_thanks.html'), name='completion_thanks'),
     #/completion_thanks
 ]
-
+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

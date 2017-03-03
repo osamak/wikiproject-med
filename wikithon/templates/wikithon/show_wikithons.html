@@ -1,29 +1,30 @@
-{% extends 'wikithon/base.html' %}
+{% extends 'wikithon/show_base.html' %}{% load staticfiles %}
 {% block title %} {{ Wikithons.name }} {% endblock %}
 
 {% block body %}
 <!--permissions-->
         <div>
-            <h1>{{ Wikithons.name }}</h1> <h6>{{ Wikithons.date_time }}</h6><br>
-            <h5> {{ Wikithons.duration }}</h5><br>
-            <h4>  {{ Wikithons.description }}</h4><br>
-            <h4>  {{ Wikithons.description }}</h4><br>
-            <button class="w3-btn w3-section w3-right" >
-                <a href="{% url 'wikithon:list_attendees' %}" target="_blank" > المسجلين </a>
-            </button>
+            <p><strong> {{ Wikithons.name }} </strong>
+            <blockquote>
+            <ol>
+            <li>{{ Wikithons.date_time }} </li>
+            <li>{{ Wikithons.duration }}</li>
+            <li> {{ Wikithons.description }} </li>
+            </ol>
+            </blockquote>
         </div>
         <div>
-            <button class="w3-btn w3-section w3-left" >
+            <button class="btn btn-success" >
                 <a href="{% url 'wikithon:single_instructions' %}" target="_blank" > تعديل </a>
             </button></br>
-            <button class="w3-btn w3-section w3-left" >
+            <button class="btn btn-success" >
                 <a href="{% url 'wikithon:delete_wikithon' %}" target="_blank" > حذف </a>
             </button>
 
-            <button class="w3-btn w3-section w3-right" >
+            <button class="btn btn-success" >
                 <a href="{% url 'wikithon:single_instructions' %}" target="_blank" > التسجيل كفرد </a>
             </button></br>
-            <button class="w3-btn w3-section w3-right" >
+            <button class="btn btn-success" >
                 <a href="{% url 'wikithon:team_instructions' %}" target="_blank" > التسجيل كفريق </a>
             </button>
         </div>

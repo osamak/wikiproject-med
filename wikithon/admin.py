@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from wikithon.models import Wikithons, Team, Category, Article, Submission
 # Register your models here.

@@ -1,95 +1,25 @@
-{% extends 'wikithon/base.html' %}
-
-{% block body %}
-<!-- Header -->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img class="w3-image" src="http://4farda.com/wp-content/uploads/2014/11/wikipedia.jpg" alt="Architecture" width="1500" height="800">
-  <div class="w3-display-middle w3-margin-top w3-center">
-  </div>
-</header>
-
-  <!-- Categories Section -->
-  <div class="w3-container w3-padding-32" id="projects">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12 w3-right"> التصانيف </h3>
-  </div>
-
-  <div class="w3-row-padding">
-<!--loop-->
-{% if wikithons_set.all %}
-    <ul>
-    {% for category in categories_set.all %}
-      <div class="w3-row-padding">
-        <div class="w3-col l3 m6 w3-margin-bottom">
-          <div class="w3-display-container">
-            <li><a class="w3-display-topright w3-black w3-padding" href="{% url 'wikithon:list_categories' category_slug %}"> {{ category.name }} </a></li>
-            <img src="add image" style="width:100%">
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-    </ul>
-{% else %}
-<p> Sorry, no categories are available yet. </p>
-{% endif %}
-<!--end loop-->
-    <div>
-      <button class="w3-btn w3-section w3-right" >
-          <a href="{% url 'wikithon:list_categories' %}" target="_blank" id="h1"> كل التصانيف </a>
-      </button>
-    </div>
-  </div>
- <!-- About Section -->
-  <div class="w3-container w3-padding-32" id="about">
-    <h3 class=" w3-right w3-border-bottom w3-border-light-grey w3-padding-12"> عنّا </h3><br/><br/><br/><br/>
-
-    <p class="w3-right"> كلام عنّا </p>
-  </div>
- <!-- if we want to talk about founders or last year's contributions -->
- <!--
-  <div class="w3-row-padding w3-grayscale">
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <img src="/w3images/team2.jpg" alt="John" style="width:100%">
-      <h3>John Doe</h3>
-      <p class="w3-opacity">CEO & Founder</p>
-      <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-      <p><button class="w3-btn-block">Contact</button></p>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
-      <h3>Jane Doe</h3>
-      <p class="w3-opacity">Architect</p>
-      <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-      <p><button class="w3-btn-block">Contact</button></p>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <img src="/w3images/team3.jpg" alt="Mike" style="width:100%">
-      <h3>Mike Ross</h3>
-      <p class="w3-opacity">Architect</p>
-      <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-      <p><button class="w3-btn-block">Contact</button></p>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <img src="/w3images/team4.jpg" alt="Dan" style="width:100%">
-      <h3>Dan Star</h3>
-      <p class="w3-opacity">Architect</p>
-      <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-      <p><button class="w3-btn-block">Contact</button></p>
-    </div>
-  </div> -->
-
-  <!-- Contact Section -->
-  <div class="w3-container w3-padding-32" id="contact">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12 w3-right"> اتصل بِنا </h3>
-    <!-- <p>Lets get in touch and talk about your and our next project.</p> -->
-    <form action="/action_page.php" target="_blank" >
-      <input class="w3-input" type="text" placeholder="الإسم" required name="Name">
-      <input class="w3-input w3-section" type="text" placeholder="البريد الإلكتروني" required name="Email">
-      <input class="w3-input w3-section" type="text" placeholder="الموضوع" required name="Subject">
-      <input class="w3-input w3-section " type="text" placeholder="التعليق" required name="Comment">
-      <button class="w3-btn w3-section w3-right" type="submit">
-        <i class="fa fa-paper-plane"></i> أرسِل
-      </button>
-    </form>
-  </div>
-
+{% extends "base.html" %}{% load staticfiles %}
+{% block title %}الرئيسية{% endblock %}
+{% block content %}
+      <div class="row">
+        <div class="col-md-4">
+          <img src="{% static 'logo' %}" alt="احضر" style="width: 140px; height: 140px;">
+          <h2>احضر</h2>
+          <p>تعرّف على نشاطنا القادم واحضره!</p>
+          <p><a class="btn btn-default" href="{% url 'wikithon:list_wikithons' %}" role="button">المزيد</a></p>
+        </div><!-- /.col-md-4 -->
+        <div class="col-md-4">
+          <img src="{% static 'logo' %}" alt="اختر مقالة" style="width: 140px; height: 140px;">
+          <h2>اختر مقالة</h2>
+            <p></p>
+            <p><a class="btn btn-default" href="{% url 'wikithon:list_categories' %}" role="button">المزيد</a></p>
+        </div><!-- /.col-md-4 -->
+        <div class="col-md-4">
+          <img src="{% static 'logo' %}" alt="ارعَ" style="width: 140px; height: 140px;">
+          <h2>ارعَ</h2>
+          <p></p>
+          <p><a class="btn btn-default" href="{% url 'wikithon:sponsor' %}" role="button">المزيد</a></p>
+        </div><!-- /.col-md-4 -->
+      </div><!-- /.row -->
+      <!-- START THE FEATURETTES? -->
 {% endblock %}
