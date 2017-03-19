@@ -1,7 +1,7 @@
 # -*- coding: utf-8  -*-
 from __future__ import unicode_literals
 
-from django.contrib.auth.models import Use
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -23,7 +23,7 @@ class Team(models.Model):
     members = models.ManyToManyField(User, verbose_name="العضوات والأعضاء",
                                      related_name="team_memberships")
     logo = models.ImageField("الشعار", null=True)
-    articles = models.ManyToManyField('Article', verbose_name="المقالات")
+    articles = models.ManyToManyField('articles.Article', verbose_name="المقالات")
     description = models.TextField("الوصف", max_length=1000)
     invitation_code = models.CharField("رمز الدعوة", max_length=10)
     is_deleted = models.BooleanField("محذوف؟", default=False)

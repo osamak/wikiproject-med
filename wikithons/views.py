@@ -1,7 +1,7 @@
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from wikithon.models import Wikithon, Team
+from .models import Wikithon, Team
 
 def list_wikithons(request):
     wikithons = Wikithon.objects.all()
@@ -36,7 +36,7 @@ def create_team(request, pk):
     context = {'form': form}
     return render(request, 'wikithons/edit_team.html', context)
 
-def edit_team(request, pk):
+def edit_team(request, wikithon_pk, pk):
     wikithon = get_object_or_404(Wikithon, pk=pk)
 
     if request.method == 'GET':
@@ -51,6 +51,9 @@ def edit_team(request, pk):
 
     context = {'form': form}
     return render(request, 'wikithons/edit_team.html', context)
+
+def delete_team(request, wikithon_pk, pk):
+    pass
 
 def show_team(request, wikithon_pk, pk):
     team = get_object_or_404(Team, wikithon__pk=wikithon_pk, pk=pk)

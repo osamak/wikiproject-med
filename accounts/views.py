@@ -6,8 +6,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
 
-from accounts.forms import ResendForm
-from accounts.models import Profile
+from .forms import ResendForm
+from .models import Profile
 from userena.models import UserenaSignup
 
 
