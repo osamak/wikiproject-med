@@ -4,37 +4,37 @@ from __future__ import unicode_literals
 from django.db import models, migrations
 
 
-def add_categories(apps):
+def add_categories(apps, schema_editor):
     Category = apps.get_model('articles','Category')
 
-    Category.objects.create(code_name="obstetrics",
+    Category.objects.create(slug="obstetrics",
                             name="طب التوليد ")
-    Category.objects.create(code_name="gynecology",
+    Category.objects.create(slug="gynecology",
                             name="علوم النساء")
-    Category.objects.create(code_name="cardiology",
+    Category.objects.create(slug="cardiology",
                             name="علوم القلب")
-    Category.objects.create(code_name="radiology",
+    Category.objects.create(slug="radiology",
                             name="علم الأشعة")
-    Category.objects.create(code_name="urology",
+    Category.objects.create(slug="urology",
                             name="علوم المسالك البلوية")
-    Category.objects.create(code_name="nephrology",
+    Category.objects.create(slug="nephrology",
                             name="علوم الكلى")
-    Category.objects.create(code_name="digestive system",
+    Category.objects.create(slug="digestive system",
                             name="طب الجهاز الهضمي")
-    Category.objects.create(code_name="pulmonology",
+    Category.objects.create(slug="pulmonology",
                             name="علوم التنفس ")
-    Category.objects.create(code_name="neurology",
+    Category.objects.create(slug="neurology",
                             name="علوم الأعصاب")
-    Category.objects.create(code_name="oncology",
+    Category.objects.create(slug="oncology",
                             name="علوم الأورام")
-    Category.objects.create(code_name="geriatrics",
+    Category.objects.create(slug="geriatrics",
                             name="طب المسنين")
-    Category.objects.create(code_name="endocrinology",
+    Category.objects.create(slug="endocrinology",
                             name="علوم الغدد")
 
 def remove_categories(apps, schema_editor):
     Category = apps.get_model('articles','Category')
-    Category.objects.filter(code_name__in=["obstetrics", "gynecology",
+    Category.objects.filter(slug__in=["obstetrics", "gynecology",
                                            "cardiology", "radiology",
                                            "urology", "nephrology",
                                            "gastroenterology",

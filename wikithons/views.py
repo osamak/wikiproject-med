@@ -5,7 +5,8 @@ from .models import Wikithon, Team
 
 def list_wikithons(request):
     wikithons = Wikithon.objects.all()
-    return render(request, 'articles/list_wikithons.html', context)
+    context = {'wikithons': wikithons}
+    return render(request, 'wikithons/list_wikithons.html', context)
 
 def show_wikithon(request, pk):
     wikithon = get_object_or_404(Wikithon, pk=pk)

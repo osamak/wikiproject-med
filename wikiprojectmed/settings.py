@@ -38,15 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'core',
+    'accounts',
+    'wikithons',
+    'articles',
     'post_office',
     'userena',
     'guardian',
     'easy_thumbnails',
     'bootstrap3',
-    'accounts',
-    'wikithons',
-    'articles',
-    'core'
 ]
 
 MIDDLEWARE = [
