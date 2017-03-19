@@ -4,15 +4,13 @@ from django.db import models
 
 from django.contrib.auth.models import User
 from userena.models import UserenaBaseProfile
-from wikithon.models import Wikithons
 
 class Profile(UserenaBaseProfile):
-    wikithon = models.ForeignKey(Wikithons, verbose_name='الويكيثون')
-    user = models.OneToOneField(User, verbose_name='اسم المستخدم')
-    name = models.CharField(max_length=100, verbose_name='الاسم')
-    email = models.EmailField(max_length=100, verbose_name='البريد الإلكتروني')
-    twitter = models.CharField(max_length=50, null=True, verbose_name='حساب تويتر')
-    bio = models.TextField(null=True, verbose_name='الوصف')
-    avatar = models.ImageField(null=True, verbose_name='الصورة الشخصية')
+    user = models.OneToOneField(User, verbose_name=u"المستخدمـ/ـة")
+    name = models.CharField('الاسم', max_length=100)
+    twitter = models.CharField('حساب تويتر', max_length=20, blank=True)
+    bio = models.TextField('نبذرة ذاتية')
+    avatar = models.ImageField('الصورة الشخصية', null=True, blank=True)
+
     def __unicode__(self):
         return self.name

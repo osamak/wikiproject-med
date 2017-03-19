@@ -4,43 +4,31 @@ from userena.forms import SignupForm
 from accounts.models import Profile
 
 class WikithonSignupForm(SignupForm):
-    name = forms.CharField(label=Profile._meta.get_field('الاسم').verbose_name,
-                                max_length=30)
-    email = forms.EmailField(label=Profile._meta.get_field(' البريد الإلكتروني').verbose_name,
-                                max_length=30)
-    twitter = forms.CharField(label=Profile._meta.get_field('حساب تويتر').verbose_name,
-                                max_length=30)
-    bio = forms.CharField(label=Profile._meta.get_field('الوصف').verbose_name,
-                                max_length=30)
-    avatar = forms.ImageField(label=Profile._meta.get_field('الصورة الشخصية').verbose_name,
-                                max_length=30)
+    name = forms.CharField(label=Profile._meta.get_field('name').verbose_name,
+                            max_length=100)
+    email = forms.EmailField(label=Profile._meta.get_field('email').verbose_name)
+    twitter = forms.CharField(label=Profile._meta.get_field('twitter').verbose_name,
+                              max_length=20)
+    bio = forms.TextField(label=Profile._meta.get_field('bio').verbose_name, widget=forms.Textarea)
+    avatar = forms.ImageField(label=Profile._meta.get_field('avatar').verbose_name)
 
     def save(self):
         # Save the parent form and get the user
         new_user = super(WikithonSignupForm, self).save()
 
         Profile.objects.create(user=new_user,
-                                     name=self.cleaned_data['الاسم'],
-                                     email=self.cleaned_data[' البريد الإلكتروني'],
-                                     twitter=self.cleaned_data['حساب تويتر'],
-                                     bio=self.cleaned_data['الوصف'],
-                                     avatar=self.cleaned_data['الصورةالشخصية'],
-                                    )
+                               name=self.cleaned_data['name'],
+                               email=self.cleaned_data['email'],
+                               twitter=self.cleaned_data['twitter'],
+                               bio=self.cleaned_data['bio'],
+                               avatar=self.cleaned_data['avatar'])
 
         return new_user
 
-class EditWikithonProfile(forms.ModelForm):
+class EditProfile(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['name', 'email', 'twitter','bio', 'avatar']
-    def clean(self):
-        cleaned_data = super(EditWikithonProfile, self).clean()
-
-        return cleaned_data
-
-    def save(self):
-        profile = super(EditWikithonProfile, self).save()
-        profile.save()
 
 class ResendForm(forms.Form):
     email = forms.EmailField()

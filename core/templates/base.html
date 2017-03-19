@@ -1,0 +1,137 @@
+<!DOCTYPE html>{% load staticfiles %}
+<html dir="rtl" lang="ar">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% block meta %}{% endblock %}
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>ويكي طب | {% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-rtl.min3.2.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/entypo.css' %}" rel="stylesheet">
+    <link href="{% static 'css/jquery-ui.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+
+    <script src="{% static 'js/jquery-1.11.1.min.js'%}"></script>
+    <script src="{% static 'js/jquery-ui.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+
+</head>
+<!-- NAVBAR
+================================================== -->
+
+<body>
+    <div id="header" class="animated bounceInDown container">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-2">
+                <a href="{% url 'home' %}"><img alt="بطريق الرياض" class="img-circle" src="{% static 'img/saudi-tux-arabin_140x140.jpg' %}"></a>
+            </div>
+
+            <div class="col-md-6">
+                <h1><a href="{% url 'home' %}">ويكي طبّ</a></h1>
+                <p id="subheader">الصحّة حين تكون عربيّة</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">بدّل شريط التصفح</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/blog/">المدونة</a></li>
+                            <li{% block events %}{% endblock %}><a href="{% url 'wikithons:list_wikithons' %}">النشاطات</a></li>
+                                <li{% block charter %}{% endblock %}><a href="{% url 'charter' %}">الميثاق</a></li>
+                                    <li{% block about %}{% endblock %}><a href="{% url 'about' %}">عن</a></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">أخرى <b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="http://getsoftwarefreedom.org">ماهي البرمجيات الحرة؟</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="{% url 'contact' %}">تواصل</a></li>
+                                            </ul>
+                                        </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container marketing">
+        {% block content %}{% endblock %}
+
+
+
+        <footer class="footer">
+            <div class="container">
+                <ul class="nav nav-pills">
+                    <li><a href="https://twitter.com/RLUGroup"><span class="entypo-social twitter"></span> تويتر</a></li>
+                    <li><a href="https://groups.google.com/forum/#!forum/riyadh-lug"><span class="entypo docs"></span> المجموعة البريدية</a></li>
+                    <li><a href="{% url 'about' %}"><span class="entypo circled-info"></span> عن المجموعة</a></li>
+                    <li><a href="https://github.com/osamak/rlugroup"><span class="entypo code"></span> الكود المصدري</a></li>
+                </ul>
+
+                <p>
+                    <a rel="license" class="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><span class="entypo cc"></span><span class="entypo cc-by"></span><span class="entypo cc-sa"></span></a> حرية النسخ مكفولة. أعضاء مجموعة مستخدمي
+                    لينكس الرياض {% now "Y" %}.
+                </p>
+
+                <p>
+                    <a class="btn btn-default" href="#" role="button">أعلى</a>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    {% if request.get_host == 'riyadhlug.org' or request.get_host == 'www.riyadhlug.org' %}
+    <!-- Piwik -->
+    <script type="text/javascript">
+        var _paq = _paq || [];
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u = (("https:" == document.location.protocol) ? "https" : "http") + "://riyadhlug.org/piwik/";
+            _paq.push(['setTrackerUrl', u + 'piwik.php']);
+            _paq.push(['setSiteId', 1]);
+            var d = document,
+                g = d.createElement('script'),
+                s = d.getElementsByTagName('script')[0];
+            g.type = 'text/javascript';
+            g.defer = true;
+            g.async = true;
+            g.src = u + 'piwik.js';
+            s.parentNode.insertBefore(g, s);
+        })();
+    </script>
+    <noscript><p><img src="//riyadhlug.org/piwik/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+    <!-- End Piwik Code -->
+    {% endif %}
+
+</body>
+
+</html>
