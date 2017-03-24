@@ -1,0 +1,75 @@
+{% extends 'wikithons/wikithons_base.html' %}{% load staticfiles %}
+{% block custom_head %}
+<link href="{% static 'css/datatables.min.css' %}" rel="stylesheet">
+{% endblock %}
+{% block title %}قائمة الويكيثونات{% endblock %}
+{% block content %}
+{% if next_wikithon %}
+<div class="row" id="next-event">
+    <div class="col-md-6 text-center">
+        <h2>{{ next_wikithon.name }}</h2>
+
+        <p>&nbsp;</p>
+        <p class="text-center">{{ next_wikithon.description|safe }}</p>
+
+        <div class="actions">
+            <a class="btn btn-default btn-lg" href="{% url 'wikithons:show_wikithon' next_wikithon.pk %}">
+	    انضم إلينا
+	  </a>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <div class="row text-center">
+          <a href="{% url 'wikithons:show_wikithon' next_wikithon.pk %}">
+            <img class="img-responsive img-rounded" src="https://maps.googleapis.com/maps/api/staticmap?center={{ next_wikithon.location.lat_position|stringformat:"f" }},{{ next_wikithon.location.long_position|stringformat:"f" }}&zoom=13&size=400x400&sacle=2&maptype=roadmap&markers=color:blue%7C{{ next_wikithon.location.lat_position|stringformat:"f" }},{{ next_wikithon.location.long_position|stringformat:"f" }}&key=AIzaSyAJ11FAmZcmxlzK8qae6Z4llWH7Y5yMGfA">        </div>
+          </a>
+    </div>
+</div>
+{% endif %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">قائمة الويكيثونات</h3>
+    </div>
+    <div class="panel-body">
+        {% if wikithons %}
+
+        <table class="display datatable compact dt-responsive">
+            <thead>
+                <tr>
+                    <th class="all">الحدث</th>
+                    <th class="all">الوقت</th>
+                    <th class="not-mobile">المكان</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for wikithon in wikithons %}
+                <tr>
+                    <td><a href="{% url 'wikithons:show_wikithon' wikithon.pk %}">{{ wikithon.name }}</a></td>
+                    <td data-order="{{ wikithon.date|date:"U" }}">{{ wikithon.date|date:"j F Y" }}</td>
+                    <td>{{ wikithon.location }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>لا توجد نشاطات.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+{% block custom_script %}
+<script src="{% static 'js/datatables.min.js' %}"></script>
+
+<script>
+    $(function() {
+        $("table").DataTable({
+            order: [
+                [1, "asc"]
+            ],
+            language: {% include 'js/dataTables-arabic.json' %},
+        });
+    });
+</script>
+
+{% endblock %}

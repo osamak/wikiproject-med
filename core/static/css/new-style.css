@@ -1,0 +1,11 @@
+.sticky {
+    position: relative;
+    padding: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+.section-icon{
+  color: #0067A9;
+}

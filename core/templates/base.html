@@ -5,45 +5,70 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    {% block meta %}{% endblock %}
-    <link rel="icon" href="../../favicon.ico">
+    <meta name="author" content="مشروع ويكي طبّ">
 
     <title>ويكي طب | {% block title %}{% endblock %}</title>
 
+    <link href="{% static 'images/icon.png' %}" rel="icon">
     <!-- Bootstrap core CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/bootstrap-rtl.min3.2.css' %}" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/entypo.css' %}" rel="stylesheet">
     <link href="{% static 'css/jquery-ui.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'css/new-style.css' %}" rel="stylesheet">
 
-    <script src="{% static 'js/jquery-1.11.1.min.js'%}"></script>
+    <script src="{% static 'js/jquery-3.2.0.min.js'%}"></script>
     <script src="{% static 'js/jquery-ui.min.js'%}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+    {% block custom_head %}{% endblock %}
+    <style>
+    html, body{
+      height: 100%;
+    }
+header#header{
+  background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('{% static "images/header-background.jpg" %}');
+  background-size: cover;
+  background-attachment: fixed;
+  height: 90%;
+  color: white;
+}
+#header h1 a{
+  color: white;
+}
 
+.big-link{
+  color: inherit;
+}
+.big-link:hover{
+  text-decoration: none;
+}
+        </style>
 </head>
 <!-- NAVBAR
 ================================================== -->
 
 <body>
-    <div id="header" class="animated bounceInDown container">
+    <header id="header">
+      <div class="sticky">
         <div class="row">
-            <div class="col-md-offset-2 col-md-2">
-                <a href="{% url 'index' %}"><img alt="بطريق الرياض" class="img-circle" src="{% static 'images/logo.png' %}"></a>
+            <div class="col-md-offset-4 col-md-2">
+                <a href="{% url 'index' %}"><img alt="شعار لينكس الرياض"  src="{% static 'images/logo.png' %}"></a>
             </div>
 
-            <div class="col-md-6">
-                <h1><a href="{% url 'index' %}">ويكي طبّ</a></h1>
+            <div class="col-md-2" style="height: 160px;">
+
+                <h1 style="margin-top: 40px;"><a href="{% url 'index' %}">ويكي طبّ</a></h1>
                 <p id="subheader">الصحّة حين تكون عربيّة</p>
-            </div>
+              </div>
         </div>
-    </div>
+      </div>
+    </header>
 
     <div class="navbar-wrapper">
         <div class="container">
@@ -60,18 +85,10 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="/blog/">المدونة</a></li>
-                            <li{% block events %}{% endblock %}><a href="{% url 'wikithons:list_wikithons' %}">النشاطات</a></li>
-                                <li{% block charter %}{% endblock %}><a href="{% url 'charter' %}">الميثاق</a></li>
-                                    <li{% block about %}{% endblock %}><a href="{% url 'about' %}">عن</a></li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">أخرى <b class="caret"></b></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="http://getsoftwarefreedom.org">ماهي البرمجيات الحرة؟</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="{% url 'contact' %}">تواصل</a></li>
-                                            </ul>
-                                        </li>
+                            <li {% block events %}{% endblock %}><a href="{% url 'wikithons:list_wikithons' %}">الويكيثونات</a></li>
+                            <li {% block articles %}{% endblock %}><a href="{% url 'articles:list_categories' %}">المقالات</a></li>
+                            <!--<li {% block charter %}{% endblock %}><a href="{% url 'charter' %}">الميثاق</a></li>-->
+                            <li {% block about %}{% endblock %}><a href="{% url 'about' %}">عن</a></li>
                         </ul>
                     </div>
                 </div>
@@ -88,13 +105,13 @@
         <footer class="footer">
             <div class="container">
                 <ul class="nav nav-pills">
-                    <li><a href="https://twitter.com/RLUGroup"><span class="entypo-social twitter"></span> تويتر</a></li>
-                    <li><a href="{% url 'about' %}"><span class="entypo circled-info"></span> عن المجموعة</a></li>
-                    <li><a href="https://github.com/osamak/wikiproject-med"><span class="entypo code"></span> الكود المصدري</a></li>
+                    <li><a target="_blank" href="https://twitter.com/wikimedar"><span class="entypo-social twitter"></span> تويتر</a></li>
+                    <li><a target="_blank" href="https://github.com/osamak/wikiproject-med"><span class="entypo code"></span> الكود المصدري</a></li>
                 </ul>
 
                 <p>
-                    <a rel="license" class="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.ar"><span class="entypo cc"></span><span class="entypo cc-by"></span><span class="entypo cc-sa"></span></a> حرية النسخ مكفولة. أعضاء وعضوات مشروع ويكي طبّ {% now "Y" %}.
+                    <a target="_blank" rel="license" class="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.ar"><span class="entypo cc"></span><span class="entypo cc-by"></span><span class="entypo cc-sa"></span></a> حقّك في النسخ مكفول. أعضاء وعضوات
+                    مشروع ويكي طبّ {% now "Y" %}.
                 </p>
 
                 <p>
@@ -113,7 +130,7 @@
         _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
         (function() {
-            var u = (("https:" == document.location.protocol) ? "https" : "http") + "://riyadhlug.org/piwik/";
+            var u = (("https:" == document.location.protocol) ? "https" : "http") + "://arabicwikimed.com/piwik/";
             _paq.push(['setTrackerUrl', u + 'piwik.php']);
             _paq.push(['setSiteId', 1]);
             var d = document,
@@ -126,10 +143,10 @@
             s.parentNode.insertBefore(g, s);
         })();
     </script>
-    <noscript><p><img src="//riyadhlug.org/piwik/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+    <noscript><p><img src="//arabicwikimed.com/piwik/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
     <!-- End Piwik Code -->
     {% endif %}
-
+    {% block custom_script %}{% endblock %}
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Article
 
-def list_categories(request, slug):
+def list_categories(request):
     categories = Category.objects.all()
     context = {'categories': categories}
     return render(request, 'articles/list_categories.html', context)

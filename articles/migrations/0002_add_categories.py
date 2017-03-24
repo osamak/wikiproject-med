@@ -19,7 +19,7 @@ def add_categories(apps, schema_editor):
                             name="علوم المسالك البلوية")
     Category.objects.create(slug="nephrology",
                             name="علوم الكلى")
-    Category.objects.create(slug="digestive system",
+    Category.objects.create(slug="gastroenterology",
                             name="طب الجهاز الهضمي")
     Category.objects.create(slug="pulmonology",
                             name="علوم التنفس ")
@@ -35,12 +35,13 @@ def add_categories(apps, schema_editor):
 def remove_categories(apps, schema_editor):
     Category = apps.get_model('articles','Category')
     Category.objects.filter(slug__in=["obstetrics", "gynecology",
-                                           "cardiology", "radiology",
-                                           "urology", "nephrology",
-                                           "gastroenterology",
-                                           "pulmonology", "endocrinology",
-                                           "neurology",
-                                           "oncology", "geriatrics"]).delete()
+                                      "cardiology", "radiology",
+                                      "urology", "nephrology",
+                                      "gastroenterology",
+                                      "pulmonology",
+                                      "endocrinology",
+                                      "neurology", "oncology",
+                                      "geriatrics"]).delete()
 
 class Migration(migrations.Migration):
 

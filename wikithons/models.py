@@ -1,8 +1,9 @@
 # -*- coding: utf-8  -*-
 from __future__ import unicode_literals
-
+from datetime import datetime
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 from .managers import WikithonQuerySet
 
 class Location(models.Model):
@@ -10,10 +11,14 @@ class Location(models.Model):
     description = models.TextField("تفاصيل المكان", help_text='الوصف مثلا', blank=True)
     long_position   = models.DecimalField ("خط الطول", max_digits=10, decimal_places=5, blank=True, null=True)
     lat_position   = models.DecimalField("خط العرض", max_digits=10, decimal_places=5, blank=True, null=True)
-    google_map_url = models.URLField("رابط خرائط غوغل")
+    google_maps_url = models.URLField("رابط خرائط غوغل")
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "مكان"
+        verbose_name_plural = "أماكن"
 
 class Wikithon(models.Model):
     name = models.CharField("الاسم", max_length=100)
@@ -31,16 +36,37 @@ class Wikithon(models.Model):
                                            auto_now_add=True)
     modification_date = models.DateTimeField("تاريخ التعديل",
                                              auto_now=True)
+    available_to_choices = (
+        ('A', u'الجميع'),
+        ('F', u'النساء'),
+        ('M', u'الرجال'),
+        )
+    available_to = models.CharField("متاح لـ", max_length=1,
+                                    default="A",
+                                    choices=available_to_choices)
     objects = WikithonQuerySet.as_manager()
 
     def is_announced(self):
         if self.announcement_date:
             return self.announcement_date < timezone.now()
         else:
-            return True 
+            return True
+
+    def is_attendable(self):
+        end_datetime = datetime.combine(self.date, self.end_time)
+        end_datetime = timezone.make_aware(end_datetime,
+                                           timezone.get_current_timezone())
+        if self.is_announced() and end_datetime > timezone.now():
+            return True
+        else:
+            return False
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "ويكيثون"
+        verbose_name_plural = "ويكيثونات"
 
 class Team(models.Model):
     name = models.CharField("اسم الفريق", max_length=100)
@@ -65,6 +91,10 @@ class Team(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "فريق"
+        verbose_name_plural = "فرق"
+
 class Registration(models.Model):
     wikithon = models.ForeignKey(Wikithon, verbose_name="الويكيثون")
     user = models.ForeignKey(User, verbose_name="المستخدمـ/ـة")
@@ -78,3 +108,6 @@ class Registration(models.Model):
     def __unicode__(self):
         return "{}'s registration in {}".format(self.user.username,
                                                 self.wikithon.name)
+    class Meta:
+        verbose_name = "تسجيل"
+        verbose_name_plural = "تسجيلات"

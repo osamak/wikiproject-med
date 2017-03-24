@@ -1,0 +1,72 @@
+{% extends 'wikithons/wikithons_base.html' %}{% load staticfiles %}
+{% block title %}{{ wikithon.name }}{% endblock %}
+{% block meta %}
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:site" content="@RLUGroup" />
+    <meta property="twitter:creator" content="@RLUGroup" />
+    <meta property="twitter:title" content="{{ wikithon.name }}" />
+    <meta property="twitter:description" content="انضموا لنشاط إثراء المحتوى العربي الحرّ" />
+    <meta property="twitter:url" content="{{ request.META.HTTP_HOST }}{% url 'wikithons:show_wikithon' wikithon.pk %}" />
+{% endblock %}
+{% block content %}
+<div class="row">
+<h2 id="event-name">{{ wikithon.name }}</h2>
+</div>
+<div class="row">
+	<div class="col-md-9">
+    <a target="_blank" href="{{ wikithon.location.google_maps_url }}">
+    <img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?center={{ wikithon.location.lat_position|stringformat:"f" }},{{ wikithon.location.long_position|stringformat:"f" }}&zoom=13&size=1000x200&maptype=roadmap&markers=color:blue%7C{{ wikithon.location.lat_position|stringformat:"f" }},{{ wikithon.location.long_position|stringformat:"f" }}&key=AIzaSyAJ11FAmZcmxlzK8qae6Z4llWH7Y5yMGfA">
+    </a>
+	</div>
+	<div class="col-md-3">
+
+<div id="attend-panel" class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">احضر!</h3>
+	</div>
+	 <div class="panel-body">
+			<p>
+		{% if wikithon.is_attendable %}
+			ككل نشاطات المجموعة هذا النشاط مجاني عمومي. <strong>{{ wikithon.name }}</strong> متاح
+			{% if event.available_to == 'M' %}للرجال
+			{% elif event.available_to == 'F' %}للنساء
+			{% elif event.available_to == 'A' %}للجميع رجالا ونساءً
+			{% endif %} لكن ينبغي تسجيل الحضور. <a id="attend-link" href="{% url 'wikithons:toggle_registration' wikithon.pk %}">سجّل حضورك الآن</a>
+
+		{% else %}
+			انتهى الحدث. نراك في <a href="{% url 'wikithons:list_wikithons' %}">حدث قادم</a>!
+		{% endif %}
+			</p>
+	</div>
+</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-9">
+	<table class="table-hover table">
+		<colgroup>
+			<col class="col-xs-2">
+			<col class="col-xs-7">
+		</colgroup>
+		<tr>
+			<th>الوصف</th>
+			<td>{{ wikithon.description|safe }}</td>
+		</tr>
+		<tr>
+			<th>المكان</th>
+			<td>{{ wikithon.location.name }}<br/>{{ wikithon.location.description }}</td>
+		</tr>
+	</table>
+	</div>
+	<div class="col-md-3">
+		<div id="time" class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">متى؟</h3>
+			</div>
+			 <div class="panel-body">
+					<p>{{ wikithon.date|date:"l j F o"  }}<br/>من {{ wikithon.start_time|date:"g:iA"  }} إلى {{ wikithon.end_time|date:"g:iA"  }}</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

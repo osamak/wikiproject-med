@@ -3,7 +3,7 @@ from .models import Location, Wikithon, Team
 
 class LocationAdmin(admin.ModelAdmin):
     search_fields = ['name', 'description']
-    list_display = ['long_position', 'lat_position']
+    list_display = ['name', 'long_position', 'lat_position']
 
 class WikithonAdmin(admin.ModelAdmin):
     search_fields = ['name', 'description']
@@ -19,5 +19,7 @@ class TeamAdmin(admin.ModelAdmin):
         if obj.founder:
             return obj.founder.profile.name
 
+
+admin.site.register(Location, LocationAdmin)
 admin.site.register(Wikithon, WikithonAdmin)
 admin.site.register(Team, TeamAdmin)

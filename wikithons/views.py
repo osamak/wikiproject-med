@@ -4,20 +4,24 @@ from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.utils import timezone
 from wikithons import utils
 from .models import Wikithon, Team
 import core.utils
 
 
 def list_wikithons(request):
-    wikithons = Wikithon.objects.all()
-    context = {'wikithons': wikithons}
+    wikithons = Wikithon.objects.announced()
+    today = timezone.now().date()
+    next_wikithon = Wikithon.objects.announced().filter(date__gte=today).order_by("date").first()
+    context = {'wikithons': wikithons,
+               'next_wikithon': next_wikithon}
     return render(request, 'wikithons/list_wikithons.html', context)
 
 def show_wikithon(request, pk):
     wikithon = get_object_or_404(Wikithon, pk=pk)
 
-    if not can_view_wikithon_yet(request.user, wikithon):
+    if not utils.can_view_wikithon_yet(request.user, wikithon):
         raise Http404
     
     context = {'wikithon': wikithon}
@@ -37,7 +41,7 @@ def list_attendees(request, pk):
 def create_team(request, pk):
     wikithon = get_object_or_404(Wikithon, pk=pk)
 
-    if not can_view_wikithon_yet(request.user, wikithon):
+    if not utils.can_view_wikithon_yet(request.user, wikithon):
         raise Http404
 
     if request.method == 'GET':
@@ -126,6 +130,10 @@ def show_join_team_introduction(request, wikithon_pk, pk, invitation_code):
 @login_required
 def toggle_registration(request, pk):
     wikithon = get_object_or_404(Wikithon, pk=pk)
+
+    if not wikithon.is_announced():
+        raise Http404
+
     action = request.POST.get('action')
     registration =  Registration.objects.filter(wikithon=wikithon).first()
 

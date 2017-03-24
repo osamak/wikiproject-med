@@ -1,19 +1,36 @@
 {% extends "base.html" %}{% load staticfiles %}
 {% block title %}الرئيسية{% endblock %}
 {% block content %}
-      <div class="row">
-        <div class="col-md-4">
-          <img src="{% static 'img/user.png' %}" alt="احضر" style="width: 140px; height: 140px;">
-          <h2>احضر</h2>
-          <p>تعرّف على نشاطنا القادم واحضره! نشاطاتنا تدور في فلك البرمجيات الحرة والثقافة الحرة وهي عامة والدعوة لها مفتوحة وغالبا ما تكون متاحة للرجال والنساء.</p>
+      <div class="row text-center">
+        <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-2">
+          <i class="section-icon fa fa-5x fa-handshake-o" aria-hidden="true"></i>
+          <h2>الويكيثونات</h2>
+          <p>هنا نجتمع لنترجم الموسوعة سويًا، ونأكل البيتزا!  أنشطتنا عمومية، ونسعد بانضمامك!</p>
           <p><a class="btn btn-default" href="{% url 'wikithons:list_wikithons' %}" role="button">المزيد</a></p>
         </div><!-- /.col-md-4 -->
-        <div class="col-md-4">
-          <img src="{% static 'img/community.png' %}" alt="ارعَ" style="width: 140px; height: 140px;">
-          <h2>ارعَ</h2>
-          <p>كن داعمًا للجهود التطوعية الرامية للنفع العام والخدمة المجتمعية وإشاعة المعرفة. كن داعما لمجتمع البرمجيات الحرة الناشئ في السعودية. ثمة طرق كثيرة لذلك!</p>
-          <p><a class="btn btn-default" href="{% url 'sponsor' %}" role="button">المزيد</a></p>
+        <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">
+          <i class="section-icon fa fa-5x fa-pencil" aria-hidden="true"></i>
+          <h2>حجز المقالات</h2>
+          <p>رصدنا أهم المقالات الصحيّة في الموسوعة، ويمكنك حجزها والبدء في الترجمة!</p>
+          <p><a class="btn btn-default" href="{% url 'articles:list_categories' %}" role="button">المزيد</a></p>
         </div><!-- /.col-md-4 -->
       </div><!-- /.row -->
+      <hr>
+      <h2 class="text-center">تابعنا!</h2>
+      <div class="row text-center">
+        <div class="col-xs-8 col-xs-offset-2 col-sm-2 col-sm-offset-4">
+          <a class="big-link" target="_blank" href="https://telegram.me/arabicwikimed">
+            <i class="section-icon fa fa-3x fa-telegram" aria-hidden="true"></i>
+            <p>تلغرام</p>
+          </a>
+        </div>
+        <div class="col-xs-8 col-xs-offset-2 col-sm-2 col-sm-offset-0">
+          <a class="big-link" target="_blank" href="https://twitter.com/wikimedar">
+            <i class="section-icon fa fa-3x fa-twitter" aria-hidden="true"></i>
+            <p>تويتر</p>
+          </a>
+        </div>
+      </div>
+
 
       {% endblock %}

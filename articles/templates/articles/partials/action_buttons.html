@@ -1,0 +1,5 @@
+{% load wikithon_tags %}
+<button data-pk="{{ article.pk }}" data-reservation="wikithon" class="btn btn-success btn-sm">احجز فردًا</button>
+{% if user|has_wikithon_without_article %}
+<button data-pk="{{ article.pk }}" data-reservation="wikithon" class="btn btn-success btn-sm">احجز للويكيثون</button>
+{% endif %}

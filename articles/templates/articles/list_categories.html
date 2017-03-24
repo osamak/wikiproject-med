@@ -1,0 +1,14 @@
+{% extends 'articles/articles_base.html' %}{% load staticfiles %}
+{% block title %}تصانيف المقالات{% endblock %}
+{% block content %}
+<div class="row">
+  {% for category in categories %}
+  <div class="col-md-4">
+    <a href="{% url 'articles:show_category' category.slug %}">
+      {% if category.image %}<img class="img-responsive img-circle" src="{{ category.image.url }}">{% endif %}
+      <p>{{ category.name }}</p>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

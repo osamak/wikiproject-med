@@ -2,5 +2,4 @@
 *$py.class
 *~
 wikiprojectmed/secrets.py
-wikithons/templates/events/
-wikithons/templates/core/
+db.sqlite3
