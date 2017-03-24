@@ -69,7 +69,7 @@ header#header{
         </div>
       </div>
     </header>
-
+<!--
     <div class="navbar-wrapper">
         <div class="container">
 
@@ -87,7 +87,6 @@ header#header{
                         <ul class="nav navbar-nav">
                             <li {% block events %}{% endblock %}><a href="{% url 'wikithons:list_wikithons' %}">الويكيثونات</a></li>
                             <li {% block articles %}{% endblock %}><a href="{% url 'articles:list_categories' %}">المقالات</a></li>
-                            <!--<li {% block charter %}{% endblock %}><a href="{% url 'charter' %}">الميثاق</a></li>-->
                             <li {% block about %}{% endblock %}><a href="{% url 'about' %}">عن</a></li>
                         </ul>
                     </div>
@@ -96,7 +95,7 @@ header#header{
 
         </div>
     </div>
-
+-->
     <div class="container marketing">
         {% block content %}{% endblock %}
 
@@ -106,16 +105,13 @@ header#header{
             <div class="container">
                 <ul class="nav nav-pills">
                     <li><a target="_blank" href="https://twitter.com/wikimedar"><span class="entypo-social twitter"></span> تويتر</a></li>
+                    <li><a target="_blank" href="{% url 'about' %}"><span class="entypo info"></span> عن المشروع</a></li>
                     <li><a target="_blank" href="https://github.com/osamak/wikiproject-med"><span class="entypo code"></span> الكود المصدري</a></li>
                 </ul>
 
                 <p>
                     <a target="_blank" rel="license" class="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.ar"><span class="entypo cc"></span><span class="entypo cc-by"></span><span class="entypo cc-sa"></span></a> حقّك في النسخ مكفول. أعضاء وعضوات
                     مشروع ويكي طبّ {% now "Y" %}.
-                </p>
-
-                <p>
-                    <a class="btn btn-default" href="#" role="button">أعلى</a>
                 </p>
             </div>
         </footer>

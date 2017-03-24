@@ -2,13 +2,17 @@
 {% block title %}تصانيف المقالات{% endblock %}
 {% block content %}
 <div class="row">
+<div class="col-md-8 col-md-offset-2">
+<div class="row text-center">
   {% for category in categories %}
-  <div class="col-md-4">
-    <a href="{% url 'articles:show_category' category.slug %}">
+  <div class="col-md-4 animated fadeIn">
+    <a style="color: inherit;" href="{% url 'articles:show_category' category.slug %}">
       {% if category.image %}<img class="img-responsive img-circle" src="{{ category.image.url }}">{% endif %}
       <p>{{ category.name }}</p>
     </a>
   </div>
   {% endfor %}
+</div>
+</div>
 </div>
 {% endblock %}
